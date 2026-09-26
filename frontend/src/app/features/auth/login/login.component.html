@@ -1,0 +1,48 @@
+<app-auth-layout
+  background="green-dark"
+  icon="hexagon"
+  title="Connexion"
+  subtitle="pour continuer vers l'application">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Numéro NPI</mat-label>
+      <input matInput formControlName="npi" placeholder="Ex : 19850312400123" />
+      <mat-error *ngIf="form.get('npi')?.hasError('required')">Le NPI est requis</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Mot de passe</mat-label>
+      <input
+        matInput
+        [type]="hidePassword ? 'password' : 'text'"
+        formControlName="password" />
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        (click)="hidePassword = !hidePassword"
+        [attr.aria-label]="'Afficher le mot de passe'"
+        [attr.aria-pressed]="!hidePassword">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="form.get('password')?.hasError('required')">Le mot de passe est requis</mat-error>
+    </mat-form-field>
+
+    <div class="auth-row">
+      <mat-checkbox formControlName="rememberPassword">Se souvenir du mot de passe</mat-checkbox>
+    </div>
+
+    <div class="auth-row auth-row--actions">
+      <a routerLink="/mot-de-passe-oublie" class="auth-link">Mot de passe oublié ?</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="submitting">
+        SE CONNECTER
+      </button>
+    </div>
+  </form>
+
+  <p class="auth-secondary">
+    Pas encore de compte ?
+    <a routerLink="/inscription">Créer un compte !</a>
+  </p>
+</app-auth-layout>

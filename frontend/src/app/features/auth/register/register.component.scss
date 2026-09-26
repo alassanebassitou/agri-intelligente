@@ -1,0 +1,36 @@
+@use 'variables' as *;
+
+.full-width {
+  width: 100%;
+}
+
+.auth-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.auth-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+
+  &--actions {
+    justify-content: space-between;
+    margin-top: 12px;
+  }
+}
+
+.auth-link {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

@@ -1,0 +1,96 @@
+<app-auth-layout
+  background="green-light"
+  icon="hexagon"
+  title="Créer un compte"
+  subtitle="pour continuer vers l'application"
+  cardMaxWidth="560px">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="auth-grid-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName="firstname" />
+        <mat-error *ngIf="form.get('firstname')?.hasError('required')">Le prénom est requis</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName="lastname" />
+        <mat-error *ngIf="form.get('lastname')?.hasError('required')">Le nom est requis</mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Numéro NPI</mat-label>
+      <input matInput formControlName="npi" placeholder="Ex : 19850312400123" />
+      <mat-error *ngIf="form.get('npi')?.hasError('required')">Le NPI est requis</mat-error>
+    </mat-form-field>
+
+    <div class="auth-grid-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Numéro de téléphone</mat-label>
+        <input matInput formControlName="phone" placeholder="+229 97 00 11 22" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Type de compte</mat-label>
+        <mat-select formControlName="typeActeur">
+          <mat-option *ngFor="let option of typeActeurOptions" [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('typeActeur')?.hasError('required')">Sélectionnez un type de compte</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="auth-grid-2">
+      <mat-form-field appearance="outline">
+        <mat-label>Mot de passe</mat-label>
+        <input
+          matInput
+          [type]="hidePassword ? 'password' : 'text'"
+          formControlName="password" />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hidePassword = !hidePassword">
+          <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.get('password')?.hasError('required')">Le mot de passe est requis</mat-error>
+        <mat-error *ngIf="form.get('password')?.hasError('minlength')">8 caractères minimum</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Confirmer le mot de passe</mat-label>
+        <input
+          matInput
+          [type]="hideConfirmPassword ? 'password' : 'text'"
+          formControlName="confirmPassword" />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          (click)="hideConfirmPassword = !hideConfirmPassword">
+          <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        <mat-error *ngIf="form.hasError('passwordsMismatch') && form.get('confirmPassword')?.touched">
+          Les mots de passe ne correspondent pas
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="auth-row">
+      <mat-checkbox formControlName="acceptTerms">
+        J'accepte les conditions d'utilisation
+      </mat-checkbox>
+    </div>
+
+    <div class="auth-row auth-row--actions">
+      <a routerLink="/connexion" class="auth-link">Se connecter plutôt</a>
+      <button mat-raised-button color="primary" type="submit" [disabled]="submitting">
+        CRÉER UN COMPTE
+      </button>
+    </div>
+  </form>
+</app-auth-layout>
