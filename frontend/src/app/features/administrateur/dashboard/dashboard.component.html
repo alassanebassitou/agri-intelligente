@@ -1,0 +1,64 @@
+<h1 class="dash-title">Tableau de bord</h1>
+<p class="dash-subtitle">Vue d'ensemble de la plateforme AgriSignal</p>
+
+<div class="kpi-grid">
+  <mat-card class="kpi-card" *ngFor="let kpi of kpis" [style.border-left-color]="kpi.accentColor">
+    <div class="kpi-value-row">
+      <span class="kpi-value">{{ kpi.value }}</span>
+      <mat-icon class="kpi-icon" [style.color]="kpi.accentColor">{{ kpi.icon }}</mat-icon>
+    </div>
+    <span class="kpi-label">{{ kpi.label }}</span>
+  </mat-card>
+</div>
+
+<div class="charts-grid">
+  <mat-card class="chart-card">
+    <h2 class="section-title">Formation</h2>
+    <p class="section-subtitle">Nouveaux formés par mois</p>
+    <app-bar-chart [data]="inscriptions"></app-bar-chart>
+  </mat-card>
+
+  <mat-card class="chart-card">
+    <h2 class="section-title">Répartition par culture</h2>
+    <p class="section-subtitle">Cultures actives sur la plateforme</p>
+    <app-role-donut-chart [data]="repartitionRoles"></app-role-donut-chart>
+  </mat-card>
+</div>
+
+<mat-card class="table-card">
+  <div class="table-header">
+    <div>
+      <h2 class="section-title">Utilisateurs récemment inscrits</h2>
+      <p class="section-subtitle">Détails et statut de validation</p>
+    </div>
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Rechercher</mat-label>
+      <input matInput [(ngModel)]="searchTerm" placeholder="Nom ou rôle" />
+    </mat-form-field>
+  </div>
+
+  <table class="users-table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Rôle</th>
+        <th>Localisation</th>
+        <th>Date d'inscription</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of utilisateursFiltres">
+        <td>{{ user.nom }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.localisation }}</td>
+        <td>{{ user.dateInscription }}</td>
+        <td>
+          <span class="status-chip" [class.status-chip--pending]="user.statut === 'En attente'">
+            {{ user.statut }}
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>

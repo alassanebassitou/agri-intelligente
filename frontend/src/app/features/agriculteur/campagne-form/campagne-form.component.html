@@ -1,0 +1,33 @@
+<h1 class="dash-title">Déclarer un semis</h1>
+<p class="dash-subtitle" *ngIf="parcelle">
+  Parcelle : <strong>{{ parcelle.name }}</strong> · {{ parcelle.commune }}
+</p>
+
+<mat-card class="form-card">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Culture</mat-label>
+      <mat-select formControlName="cultureName">
+        <mat-option *ngFor="let culture of cultures" [value]="culture.cultureName">
+          {{ culture.cultureName }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('cultureName')?.hasError('required')">Sélectionnez une culture</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Date de semis</mat-label>
+      <input matInput [matDatepicker]="picker" [max]="maxDate" formControlName="dateSemis" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="form.get('dateSemis')?.hasError('required')">La date de semis est requise</mat-error>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-button type="button" (click)="onCancel()">Annuler</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="submitting">
+        {{ submitting ? 'Enregistrement...' : 'Déclarer le semis' }}
+      </button>
+    </div>
+  </form>
+</mat-card>

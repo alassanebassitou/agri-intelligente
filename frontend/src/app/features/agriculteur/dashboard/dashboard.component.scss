@@ -1,0 +1,122 @@
+@use 'variables' as *;
+
+$dash-green-accent: #4caf7d;
+$dash-border: #e3e6e1;
+
+.dash-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.dash-subtitle {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 28px;
+}
+
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.kpi-card {
+  padding: 20px;
+  box-shadow: none;
+  border: 1px solid $dash-border;
+  border-radius: 8px;
+}
+
+.kpi-value-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.kpi-value {
+  font-size: 30px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.kpi-icon {
+  color: $dash-green-accent;
+}
+
+.kpi-label {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+// 2/3 - 1/3 : liste des parcelles à gauche, météo à droite
+.dash-lower-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.parcelles-card {
+  padding: 24px;
+  box-shadow: none;
+  border: 1px solid $dash-border;
+  border-radius: 8px;
+}
+
+.section-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.parcelle-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid $dash-border;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.parcelle-icon {
+  color: $dash-green-accent;
+  flex-shrink: 0;
+}
+
+.parcelle-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.parcelle-nom {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.parcelle-meta {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+.parcelle-controle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+  white-space: nowrap;
+}

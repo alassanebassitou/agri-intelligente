@@ -42,7 +42,7 @@ export class StorageTokenService {
         if( user == null){
             return '';
         }
-        return user.role;
+        return user.role?.replace(/^ROLE_/, '') ?? '';
     }
 
     static isLoggedIn(): boolean {

@@ -1,0 +1,32 @@
+$dash-border: #e3e6e1;
+
+.dash-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.dash-subtitle {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 24px;
+}
+
+.form-card {
+  padding: 24px;
+  box-shadow: none;
+  border: 1px solid $dash-border;
+  border-radius: 8px;
+  max-width: 480px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}

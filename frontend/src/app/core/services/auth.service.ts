@@ -3,11 +3,12 @@ import { StorageTokenService } from '../storage/storage-token.service';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { InscriptionRequest, InscriptionResponse } from '../models/auth';
+import { environment } from '../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  private url = 'http://localhost:8080/api/auth';
+  private url = `${environment.apiUrl}/api/auth`;
 
   constructor(
     private http: HttpClient,

@@ -1,0 +1,27 @@
+<div class="weather-widget">
+  <div class="weather-main">
+    <mat-icon class="weather-icon">{{ weather.icon }}</mat-icon>
+    <div class="weather-temp-block">
+      <span class="weather-temp">{{ weather.temperatureC }}°C</span>
+      <span class="weather-location">{{ weather.localisation }}</span>
+    </div>
+  </div>
+
+  <p class="weather-condition">{{ weather.condition }}</p>
+
+  <div class="weather-details">
+    <div class="weather-detail-item">
+      <mat-icon>water_drop</mat-icon>
+      <span>{{ weather.humidite }}% d'humidité</span>
+    </div>
+    <div class="weather-detail-item">
+      <mat-icon>umbrella</mat-icon>
+      <span>{{ weather.precipitationPrevue }}</span>
+    </div>
+  </div>
+
+  <div class="weather-advice">
+    <mat-icon>lightbulb</mat-icon>
+    <span>{{ weather.conseil }}</span>
+  </div>
+</div>

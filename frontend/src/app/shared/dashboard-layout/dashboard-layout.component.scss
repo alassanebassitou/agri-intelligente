@@ -1,0 +1,105 @@
+
+$dash-green-dark: #245c40;
+$dash-green-accent: #5fc490;
+$dash-bg: #f6f7f5;
+$dash-border: #e3e6e1;
+$dash-text-muted: rgba(255, 255, 255, 0.85);
+
+.dash-container {
+  height: 100vh;
+}
+
+.dash-sidenav {
+  width: 240px;
+  background: $dash-green-dark;
+  color: #ffffff;
+  border-right: none;
+}
+
+.dash-brand {
+  padding: 24px 20px;
+}
+
+.dash-brand-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.dash-nav {
+  padding-top: 8px;
+  --mdc-list-list-item-label-text-color: #{$dash-text-muted};
+  --mdc-list-list-item-leading-icon-icon-color: #{$dash-text-muted};
+  --mdc-list-list-item-hover-label-text-color: #ffffff;
+  --mdc-list-list-item-hover-leading-icon-icon-color: #ffffff;
+  --mdc-list-list-item-hover-state-layer-color: #ffffff;
+  --mdc-list-list-item-focus-state-layer-color: #ffffff;
+}
+
+.dash-nav-item {
+  ::ng-deep .mdc-list-item__primary-text {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $dash-text-muted;
+  }
+
+  &--active {
+    background: rgba(255, 255, 255, 0.12);
+
+    ::ng-deep .mdc-list-item__primary-text {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    mat-icon {
+      color: $dash-green-accent;
+    }
+  }
+}
+
+.dash-nav-badge {
+  background: #c0453f;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 1px 7px;
+  margin-left: 6px;
+}
+
+.dash-content-area {
+  background: $dash-bg;
+}
+
+.dash-toolbar {
+  background: #ffffff;
+  border-bottom: 1px solid $dash-border;
+  box-shadow: none;
+}
+
+.dash-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.dash-user-trigger {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+.dash-user-name {
+  font-size: 14px;
+}
+
+.dash-user-chevron {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.dash-page {
+  padding: 32px 40px;
+}

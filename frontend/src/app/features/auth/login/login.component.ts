@@ -63,6 +63,7 @@ export class LoginComponent {
         
         this.submitting = false;
         const userRole = StorageTokenService.getUserRole();
+        console.log('User role:', userRole);
         this.router.navigate([routePourRole(userRole)]);
         
       },

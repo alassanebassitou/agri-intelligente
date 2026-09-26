@@ -1,0 +1,31 @@
+<h1 class="dash-title">Tableau de bord</h1>
+<p class="dash-subtitle">Vue d'ensemble de votre activité</p>
+
+<div class="kpi-grid">
+  <mat-card class="kpi-card" *ngFor="let kpi of kpis">
+    <div class="kpi-value-row">
+      <span class="kpi-value">{{ kpi.value }}</span>
+      <mat-icon class="kpi-icon">{{ kpi.icon }}</mat-icon>
+    </div>
+    <span class="kpi-label">{{ kpi.label }}</span>
+  </mat-card>
+</div>
+
+<div class="dash-lower-grid">
+  <mat-card class="parcelles-card">
+    <h2 class="section-title">Mes parcelles</h2>
+
+    <div class="parcelle-row" *ngFor="let parcelle of parcelles">
+      <mat-icon class="parcelle-icon">landscape</mat-icon>
+      <div class="parcelle-info">
+        <span class="parcelle-nom">{{ parcelle.nom }}</span>
+        <span class="parcelle-meta">
+          {{ parcelle.culture }} · {{ parcelle.superficieHa }} ha · {{ parcelle.localisation }}
+        </span>
+      </div>
+      <span class="parcelle-controle">{{ parcelle.dernierControle }}</span>
+    </div>
+  </mat-card>
+
+  <app-weather-widget [weather]="weather"></app-weather-widget>
+</div>
