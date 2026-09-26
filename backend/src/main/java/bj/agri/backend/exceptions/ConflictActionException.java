@@ -1,4 +1,7 @@
 package bj.agri.backend.exceptions;
 
-public class ConflictActionException {
+public class ConflictActionException extends RuntimeException {
+    public ConflictActionException(String message) {
+        super(message);
+    }
 }

@@ -1,4 +1,4 @@
-package bj.agri.backend.services;
+package bj.agri.backend.services.monitoring;
 
 import bj.agri.backend.dto.response.AlerteResponse;
 import bj.agri.backend.exceptions.ResourceNotFoundException;

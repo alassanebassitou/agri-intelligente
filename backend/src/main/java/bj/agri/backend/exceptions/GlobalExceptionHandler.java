@@ -1,4 +1,4 @@
-package com.bacataches.app.exceptions;
+package bj.agri.backend.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(EmailAlreadyUsedException.class)
-    ResponseEntity<String> conflict(EmailAlreadyUsedException e) {
+    @ExceptionHandler(NPIAlreadyUseException.class)
+    ResponseEntity<String> conflict(NPIAlreadyUseException e) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
     }
 

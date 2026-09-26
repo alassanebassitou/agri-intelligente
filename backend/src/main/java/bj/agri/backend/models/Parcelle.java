@@ -1,9 +1,6 @@
-package bj.agri.backend.parcelles;
+package bj.agri.backend.models;
 
-import bj.agri.backend.commun.audite.Auditable;
-import bj.agri.backend.user.Authorities;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +12,13 @@ import lombok.Setter;
 @Setter
 public class Parcelle extends Auditable {
     private String name;
-    private String superficie;
-    private String password;
-    private Authorities role;
-    private String phone;
+    private Double superficie;
+    private Double latitude;
+    private Double longitude;
+    private String commune;
+    private String typeSol;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "owner_id")
+    private Users owner;
 }

@@ -1,4 +1,6 @@
 package bj.agri.backend.dto.response;
 
-public record ResultatRedevance() {
+import bj.agri.backend.models.Redevance;
+
+public record ResultatRedevance(Double montant, Redevance redevance) {
 }

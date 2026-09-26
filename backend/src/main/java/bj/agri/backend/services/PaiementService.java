@@ -1,4 +1,4 @@
-package bj.agri.backend.services.monitoring;
+package bj.agri.backend.services;
 
 import bj.agri.backend.dto.response.PaiementResponse;
 import bj.agri.backend.enums.StatusCommande;
@@ -7,7 +7,7 @@ import bj.agri.backend.exceptions.ResourceNotFoundException;
 import bj.agri.backend.models.Commande;
 import bj.agri.backend.models.Paiement;
 import bj.agri.backend.repositories.CommandeRepository;
-import bj.agri.backend.repositories.InitierPaiementRequest;
+import bj.agri.backend.dto.request.InitierPaiementRequest;
 import bj.agri.backend.repositories.PaiementRepository;
 import bj.agri.backend.security.AuthenticatedUser;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
@@ -24,6 +25,7 @@ public class PaiementService {
 
     private final PaiementRepository paiementRepository;
     private final CommandeRepository commandeRepository;
+    private final RedevanceService redevanceService;
 
     public PaiementResponse initier(InitierPaiementRequest req, AuthenticatedUser authUser) {
         Commande commande = commandeRepository.findByIdAndConcerne(req.commandeId(), authUser.userId())
@@ -44,25 +46,28 @@ public class PaiementService {
         paiement.setAmount(BigDecimal.valueOf(montant));
         paiement.setPrestataire(req.prestataire());
         paiement.setStatus(StatusPayment.PENDING);
+        paiement.setDateCreation(LocalDateTime.now());
         paiement.setReference(genererReference());
-
-        // Ici : appel réel au SDK Kkiapay/FedaPay pour obtenir l'URL de paiement
-        // Pour la démo, on peut simuler une confirmation immédiate ou via un endpoint de test
 
         return PaiementResponse.from(paiementRepository.save(paiement));
     }
 
     @Transactional
     public void confirmerParWebhook(String reference, String statutPrestataire) {
-        Paiement paiement = paiementRepository.findAll().stream()
-                .filter(p -> reference.equals(p.getReference()))
-                .findFirst()
+        Paiement paiement = paiementRepository.findByReference(reference)
                 .orElseThrow(() -> new ResourceNotFoundException("Paiement introuvable"));
 
-        paiement.setStatus("SUCCES".equals(statutPrestataire) ? StatusPayment.SUCCESSFULLY : StatusPayment.FAILED);
+        paiement.setStatus("SUCCESSFULLY".equals(statutPrestataire) ? StatusPayment.SUCCESSFULLY : StatusPayment.FAILED);
         paiementRepository.save(paiement);
 
-        if ("REUSSI".equals(paiement.getStatus())) {
+        if ("SUCCESSFULLY".equals(paiement.getStatus())) {
+
+            String marche = paiement.getCommande().getOffre().getMarche();
+
+            var resultat = redevanceService.calculerRedevance(marche, paiement.getAmount().doubleValue());
+            paiement.setMontantRedevance(BigDecimal.valueOf(resultat.montant()));
+            paiement.setRedevance(resultat.redevance());
+
             Commande commande = paiement.getCommande();
             commande.setStatus(StatusCommande.PAYED);
             commandeRepository.save(commande);

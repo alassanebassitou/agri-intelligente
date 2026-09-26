@@ -1,5 +1,7 @@
-package bj.agri.backend.security;
+package bj.agri.backend.config;
 
+import bj.agri.backend.security.JwtFilterComponent;
+import bj.agri.backend.security.UserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,12 +34,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) {
         return httpSecurity.csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth.requestMatchers(
-                                "/api/auth/**",
-                                "/api/v1/organizations/**",
-                                "/api/v1/structures/**",
-                                "/api/v1/projects/**"
+                                "/api/auth/**"
                         ).permitAll()
-                        .requestMatchers("/api/v1/**").authenticated())
+                        .requestMatchers("/api/**").authenticated())
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .userDetailsService(userDetailService)

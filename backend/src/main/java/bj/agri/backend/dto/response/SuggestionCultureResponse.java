@@ -1,4 +1,11 @@
 package bj.agri.backend.dto.response;
 
-public class SuggestionCultureResponse {
+import java.util.List;
+
+public record SuggestionCultureResponse (
+        Long cultureId,
+        String nomCulture,
+        int score,
+        List<String> raisons
+) {
 }

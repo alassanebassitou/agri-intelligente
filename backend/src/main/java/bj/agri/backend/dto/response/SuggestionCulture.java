@@ -1,4 +1,8 @@
 package bj.agri.backend.dto.response;
 
-public record SuggestionCulture() {
+import java.util.List;
+
+public record SuggestionCulture(String nomCulture,
+                                int score,
+                                List<String> raisons) {
 }

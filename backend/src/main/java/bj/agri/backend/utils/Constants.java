@@ -1,4 +1,4 @@
-package com.bacataches.app.utils;
+package bj.agri.backend.utils;
 
 public class Constants {
     public static final String HEADER_STRING = "Authorization";

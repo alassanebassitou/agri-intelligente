@@ -1,8 +1,7 @@
-package bj.agri.backend.offre;
+package bj.agri.backend.models;
 
-import bj.agri.backend.commun.audite.Auditable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import bj.agri.backend.enums.StatusOffer;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +15,18 @@ import java.math.BigDecimal;
 @Setter
 public class Offre extends Auditable {
     private String marche;
-    private Long quantity;
+    private Double quantity;
     private BigDecimal prix;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private StatusOffer status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users users;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "campagne_id")
+    private Campagne campagne;
+
 }

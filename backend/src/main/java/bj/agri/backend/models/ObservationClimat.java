@@ -1,7 +1,6 @@
-package bj.agri.backend.observation;
+package bj.agri.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,12 +12,16 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Observation {
-    private LocalDate jour;;
-    private String temperature;
-    private String humidity;
-    private String pluieMn;
+public class ObservationClimat extends Auditable {
+    private LocalDate jour;
+    private Double temperature;
+    private Double humidity;
+    private Double pluieMm;
     private String source;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parcelle_id")
+    private Parcelle parcelle;
 }
 
 

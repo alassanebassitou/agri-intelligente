@@ -1,4 +1,4 @@
-package bj.agri.backend.services.components;
+package bj.agri.backend.services.monitoring.regles;
 
 import bj.agri.backend.enums.NiveauAlerte;
 import bj.agri.backend.enums.TypeAlerte;
@@ -15,7 +15,7 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class RegleRisqueFongique implements RegleAlerte{
+public class RegleRisqueFongique implements RegleAlerte {
 
     private final MaladieRepository maladieRepository;
 
@@ -29,7 +29,7 @@ public class RegleRisqueFongique implements RegleAlerte{
             return Optional.empty();
         }
 
-        List<Maladie> maladies = maladieRepository.findByCultureId(campagne.getCulture().getId());
+        List<Maladie> maladies = maladieRepository.findByCulturesId(campagne.getCulture().getId());
         if (maladies.isEmpty()) {
             return Optional.empty();
         }

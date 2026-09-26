@@ -1,4 +1,4 @@
-package bj.agri.backend.services.components;
+package bj.agri.backend.services.monitoring.regles;
 
 import bj.agri.backend.enums.NiveauAlerte;
 import bj.agri.backend.enums.TypeAlerte;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class RegleRecolteProche implements RegleAlerte{
+public class RegleRecolteProche implements RegleAlerte {
 
     @Override
     public Optional<Alerte> evaluer(Campagne campagne, List<ObservationClimat> historique) {

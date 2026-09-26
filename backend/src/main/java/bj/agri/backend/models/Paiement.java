@@ -13,15 +13,21 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Payment extends Auditable {
+public class Paiement extends Auditable {
     private BigDecimal amount;
     private String prestataire;
     private String reference;
 
     @Enumerated(EnumType.STRING)
     private StatusPayment status;
+    private BigDecimal montantRedevance;
+
 
     @OneToOne
     @JoinColumn(name = "commande_id")
     private Commande commande;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "redevance_id")
+    private Redevance redevance;
 }

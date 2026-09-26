@@ -1,4 +1,4 @@
-package bj.agri.backend.services.components;
+package bj.agri.backend.services.monitoring;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;

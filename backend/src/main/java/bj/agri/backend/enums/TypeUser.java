@@ -1,4 +1,8 @@
 package bj.agri.backend.enums;
 
-public class TypeUser {
+public enum TypeUser {
+    AGRICULTEUR,
+    ACHETEUR,
+    AGENT_ETAT,
+    ADMIN
 }

@@ -1,4 +1,4 @@
-package bj.agri.backend.services.components;
+package bj.agri.backend.services.monitoring.regles;
 
 import bj.agri.backend.models.Alerte;
 import bj.agri.backend.models.Campagne;

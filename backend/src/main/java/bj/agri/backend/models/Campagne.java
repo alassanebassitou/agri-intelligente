@@ -1,8 +1,6 @@
-package bj.agri.backend.campagne;
+package bj.agri.backend.models;
 
-import bj.agri.backend.commun.audite.Auditable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +13,16 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class Campagne extends Auditable {
-    private LocalDate dateSemi;
-    private LocalDate dateRecolteEstime;
+    private LocalDate dateSemis;
+    private LocalDate dateRecolteEstimee;
     private String status;
-    private Long quantityRecolte;
+    private Double quantityRecoltee;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "parcelle_id")
+    private Parcelle parcelle;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "culture_id")
+    private Culture culture;
 }

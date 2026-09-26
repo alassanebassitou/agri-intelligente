@@ -1,4 +1,8 @@
 package bj.agri.backend.dto.request;
 
-public class InitierPaimentRequest {
-}
+import jakarta.validation.constraints.NotNull;
+
+public record InitierPaimentRequest (
+        @NotNull Long commandeId,
+        @NotNull String prestataire  // KKIAPAY ou FEDAPAY
+) {}

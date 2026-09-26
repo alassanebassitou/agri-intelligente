@@ -1,10 +1,11 @@
-package bj.agri.backend.services.components;
+package bj.agri.backend.services.monitoring;
 
 import bj.agri.backend.models.Campagne;
 import bj.agri.backend.models.ObservationClimat;
 import bj.agri.backend.repositories.AlerteRepository;
 import bj.agri.backend.repositories.CampagneRepository;
 import bj.agri.backend.repositories.ObservationClimatRepository;
+import bj.agri.backend.services.monitoring.regles.RegleAlerte;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
@@ -16,7 +17,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MoteurAlertes {
 
-    private final List<RegleAlerte> regles;              // Spring injecte toutes les @Component RegleAlerte
+    private final List<RegleAlerte> regles;
     private final ObservationClimatRepository observationRepository;
     private final AlerteRepository alerteRepository;
     private final CampagneRepository campagneRepository;
