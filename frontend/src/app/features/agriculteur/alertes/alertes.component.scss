@@ -1,0 +1,97 @@
+$dash-border: #e3e6e1;
+$color-climat: #3d7bb5;
+$color-phytosanitaire: #b5453f;
+$color-planification: #4caf7d;
+
+.dash-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+.dash-subtitle {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 24px;
+}
+
+.alertes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.alerte-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 20px;
+  box-shadow: none;
+  border: 1px solid $dash-border;
+  border-left: 4px solid $dash-border;
+  border-radius: 8px;
+
+  &--climat {
+    border-left-color: $color-climat;
+
+    .alerte-icon {
+      color: $color-climat;
+    }
+  }
+
+  &--phytosanitaire {
+    border-left-color: $color-phytosanitaire;
+
+    .alerte-icon {
+      color: $color-phytosanitaire;
+    }
+  }
+
+  &--planification {
+    border-left-color: $color-planification;
+
+    .alerte-icon {
+      color: $color-planification;
+    }
+  }
+}
+
+.alerte-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.alerte-content {
+  flex: 1;
+}
+
+.alerte-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.alerte-type-chip {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.alerte-date {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.alerte-message {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.85);
+  margin: 0 0 4px;
+}
+
+.alerte-parcelle {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.5);
+}

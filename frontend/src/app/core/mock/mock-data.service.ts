@@ -10,6 +10,28 @@ export interface DashboardKpiData {
   icon: string;
 }
 
+export type TypeAlerte = 'climat' | 'phytosanitaire' | 'planification';
+ 
+export interface AlerteMock {
+  id: number;
+  type: TypeAlerte;
+  message: string;
+  parcelleName: string;
+  createdAt: string; // libellé relatif lisible, pas de vraie logique de date pour la démo
+}
+
+export type StatutModule = 'Terminé' | 'En cours' | 'À faire';
+
+export interface FormationModuleMock {
+  id: number;
+  titre: string;
+  description: string;
+  dureeMinutes: number;
+  categorie: string;
+  icon: string;
+  statut: StatutModule;
+}
+
 export interface ParcelleMock {
   id: number;
   nom: string;
@@ -153,5 +175,82 @@ export class MockDataService {
       precipitationPrevue: 'Faible risque de pluie en fin de journée',
       conseil: 'Conditions favorables pour un traitement phytosanitaire ce matin.',
     };
+  }
+
+  getAlertes(): AlerteMock[] {
+    return [
+      {
+        id: 1,
+        type: 'climat',
+        message: 'Fortes pluies prévues, ne mettez pas d\'engrais',
+        parcelleName: 'Parcelle Rivière',
+        createdAt: 'Il y a 3 heures',
+      },
+      {
+        id: 2,
+        type: 'phytosanitaire',
+        message: 'Conditions favorables à une maladie sur votre maïs, inspectez vos feuilles',
+        parcelleName: 'Parcelle Nord',
+        createdAt: 'Il y a 1 jour',
+      },
+      {
+        id: 3,
+        type: 'planification',
+        message: 'Votre récolte sera prête dans 12 jours',
+        parcelleName: 'Parcelle Sud',
+        createdAt: 'Il y a 2 jours',
+      },
+    ];
+  }
+
+  
+  getFormationModules(): FormationModuleMock[] {
+    return [
+      {
+        id: 1,
+        titre: 'Bien utiliser les alertes climatiques',
+        description: 'Comprendre les alertes météo reçues sur la plateforme et adapter vos pratiques en conséquence.',
+        dureeMinutes: 10,
+        categorie: 'Climat',
+        icon: 'wb_sunny',
+        statut: 'Terminé',
+      },
+      {
+        id: 2,
+        titre: 'Reconnaître les maladies courantes du maïs',
+        description: 'Identifier les premiers signes de maladies fréquentes et savoir quand agir.',
+        dureeMinutes: 15,
+        categorie: 'Phytosanitaire',
+        icon: 'bug_report',
+        statut: 'En cours',
+      },
+      {
+        id: 3,
+        titre: 'Techniques de rotation des cultures',
+        description: 'Choisir le bon enchaînement de cultures pour préserver la fertilité de vos parcelles.',
+        dureeMinutes: 20,
+        categorie: 'Agronomie',
+        icon: 'sync',
+        statut: 'À faire',
+      },
+      {
+        id: 4,
+        titre: 'Fertilisation raisonnée et calendrier d\'apport',
+        description: "Adapter les quantités et le moment d'apport d'engrais selon la culture et la saison.",
+        dureeMinutes: 12,
+        categorie: 'Agronomie',
+        icon: 'eco',
+        statut: 'À faire',
+      },
+      {
+        id: 5,
+        titre: 'Irrigation économe en saison sèche',
+        description: "Réduire la consommation d'eau tout en maintenant de bons rendements.",
+        dureeMinutes: 18,
+        categorie: 'Climat',
+        icon: 'water_drop',
+        statut: 'À faire',
+      },
+    ];
   }
 }

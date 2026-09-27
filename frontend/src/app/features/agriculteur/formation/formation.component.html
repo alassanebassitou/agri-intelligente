@@ -1,1 +1,28 @@
-<p>formation works!</p>
+<h1 class="dash-title">Formation</h1>
+<p class="dash-subtitle">Renseignez-vous et formez-vous aux bonnes pratiques agricoles</p>
+
+<p class="progress-summary">{{ nombreTermines }} / {{ modules.length }} modules terminés</p>
+
+<div class="modules-grid">
+  <mat-card class="module-card" *ngFor="let module of modules">
+    <div class="module-header">
+      <mat-icon class="module-icon">{{ module.icon }}</mat-icon>
+      <span
+        class="statut-chip"
+        [class.statut-chip--done]="module.statut === 'Terminé'"
+        [class.statut-chip--progress]="module.statut === 'En cours'">
+        {{ module.statut }}
+      </span>
+    </div>
+
+    <h2 class="module-title">{{ module.titre }}</h2>
+    <p class="module-description">{{ module.description }}</p>
+
+    <div class="module-footer">
+      <span class="module-meta">{{ module.categorie }} · {{ module.dureeMinutes }} min</span>
+      <button mat-button color="primary">
+        {{ module.statut === 'Terminé' ? 'Revoir' : 'Commencer' }}
+      </button>
+    </div>
+  </mat-card>
+</div>

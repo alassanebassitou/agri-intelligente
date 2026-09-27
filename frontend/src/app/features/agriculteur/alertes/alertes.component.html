@@ -1,1 +1,17 @@
-<p>alertes works!</p>
+<h1 class="dash-title">Alertes</h1>
+<p class="dash-subtitle">Alertes climatiques et phytosanitaires sur vos parcelles</p>
+
+<div class="alertes-list">
+  <mat-card class="alerte-card" *ngFor="let alerte of alertes" [class]="'alerte-card--' + alerte.type">
+    <mat-icon class="alerte-icon">{{ icone(alerte.type) }}</mat-icon>
+
+    <div class="alerte-content">
+      <div class="alerte-header">
+        <span class="alerte-type-chip">{{ label(alerte.type) }}</span>
+        <span class="alerte-date">{{ alerte.createdAt }}</span>
+      </div>
+      <p class="alerte-message">{{ alerte.message }}</p>
+      <span class="alerte-parcelle">{{ alerte.parcelleName }}</span>
+    </div>
+  </mat-card>
+</div>
