@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: agri-intelligente
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: free
+    envVars:
+      - key: FRONT_URL
+        value: https://agri-intelligente-2k9d.vercel.app
+      - key: APP_API_URL
+        value: https://agri-intelligente.onrender.com
